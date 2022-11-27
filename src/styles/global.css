@@ -17,3 +17,6 @@ a {
   text-decoration: none;
   color: black;
 }
+.active {
+  @apply text-[#888888];
+}

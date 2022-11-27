@@ -7,6 +7,10 @@ module.exports = {
         poppins: "Poppins",
       },
     },
+    colors: {
+      primary: "#d4a373",
+      secondary: "#ecc94b",
+    },
   },
   plugins: [],
 };
