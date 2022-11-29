@@ -6,9 +6,11 @@ import { MdCollectionsBookmark } from "react-icons/md";
 import { ImBooks } from "react-icons/im";
 
 function Nav() {
+  //change icons to outline later
+  //add a line on top ie: divider
   return (
-    <nav className="fixed bottom-3 flex">
-      <NavLink to="/">
+    <nav className="flex justify-center gap-8 absolute left-0 right-0 bottom-4">
+      <NavLink to="/" className="">
         <AiFillHome className="" size={24} />
         <h4 className="hidden md:block">Home</h4>
       </NavLink>

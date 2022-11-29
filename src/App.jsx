@@ -14,19 +14,23 @@ import Book from "./pages/Book";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/reading" element={<Reading />} />
-        <Route path="/planned" element={<Planned />} />
-        <Route path="/completed" element={<Completed />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/searched/:search" element={<Searched />} />
-        <Route path="/book/:name" element={<Book />} />
-        <Route path="/*" element={<ErrorPage />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <main className="mx-3">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/reading" element={<Reading />} />
+            <Route path="/planned" element={<Planned />} />
+            <Route path="/completed" element={<Completed />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/searched/:search" element={<Searched />} />
+            <Route path="/book/:name" element={<Book />} />
+            <Route path="/*" element={<ErrorPage />} />
+          </Routes>
+        </main>
+        <Nav className="" />
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import BookCard from "../components/BookCard";
 
 function Searched() {
   const [searchedBooks, setSearchedBooks] = useState([]);
@@ -22,19 +23,15 @@ function Searched() {
 
   console.log(searchedBooks);
   return (
-    <div>
+    <div className="grid grid-cols-2 place-items-center">
       {searchedBooks.map((book) => {
         return (
-          <div>
-            <img
-              src={
-                "https://covers.openlibrary.org/b/id/" + book.cover_i + "-M.jpg"
-              }
-              alt="fds"
-            />
-            <p>{book.title}</p>
-            <p>{book.author_name[0]}</p>
-          </div>
+          <BookCard
+            key={book.isbn[0]}
+            title={book.title}
+            imgCover={book.cover_i}
+            authorName={book.author_name[0]}
+          />
         );
       })}
       <p>hi</p>

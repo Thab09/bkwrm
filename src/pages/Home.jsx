@@ -3,8 +3,9 @@ import Search from "../components/Search";
 
 function Home() {
   return (
-    <div>
+    <div className="">
       <Search />
+      <div></div>
       {/* <img
         src={
           "https://covers.openlibrary.org/b/isbn/" + book.isbn_13[0] + "-M.jpg"
