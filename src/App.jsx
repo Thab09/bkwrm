@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Nav from "./components/Nav";
-import Login from "./components/Login";
+import Login from "./pages/auth/Login";
 import Reading from "./pages/Reading";
 import Planned from "./pages/Planned";
 import Completed from "./pages/Completed";
@@ -25,6 +25,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/searched/:search" element={<Searched />} />
             <Route path="/book/:name" element={<Book />} />
+            <Route path="/auth/login" element={<Login />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>
         </main>
