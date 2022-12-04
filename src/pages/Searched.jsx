@@ -5,32 +5,37 @@ import BookCard from "../components/BookCard";
 
 function Searched() {
   const [searchedBooks, setSearchedBooks] = useState([]);
+  const [googleBooks, setGoogleBooks] = useState([]);
   let params = useParams();
 
   const getSearchedBooks = async (bookname) => {
     const data = await fetch(
-      "http://openlibrary.org/search.json?title=" +
-        bookname +
-        "&fields=*,availability&limit=10"
+      `https://www.googleapis.com/books/v1/volumes?q=${bookname}&maxResults=40&key=${
+        import.meta.env.VITE_GOOGLE_API_KEY
+      }`
     );
-    const booklist = await data.json();
-    setSearchedBooks(booklist.docs);
+    const googleList = await data.json();
+    setGoogleBooks(googleList.items);
   };
 
   useEffect(() => {
     getSearchedBooks(params.search);
   }, [params.search]);
 
-  console.log(searchedBooks);
+  console.log(googleBooks);
   return (
     <div className="grid grid-cols-2 place-items-center">
-      {searchedBooks.map((book) => {
+      {googleBooks.map((book) => {
         return (
           <BookCard
-            key={book.isbn[0]}
-            title={book.title}
-            imgCover={book.cover_i}
-            authorName={book.author_name[0]}
+            key={book.id}
+            title={book.volumeInfo.title}
+            imgCover={
+              book.volumeInfo.imageLinks == undefined
+                ? null
+                : book.volumeInfo.imageLinks.thumbnail
+            }
+            authorName={book.volumeInfo.authors[0]}
           />
         );
       })}
