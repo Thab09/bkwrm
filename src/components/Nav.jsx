@@ -29,7 +29,7 @@ function Nav() {
           </div>
         )}
         {user && (
-          <div className="flex items-center justify-center gap-8">
+          <div className="flex items-center justify-center gap-10">
             <NavLink to="/" className="">
               <AiFillHome className="" size={24} />
               <h4 className="hidden md:block">Home</h4>
