@@ -14,7 +14,7 @@ import Book from "./pages/Book";
 
 function App() {
   return (
-    <div>
+    <div className="h-screen bg-white dark:bg-gray-800">
       <BrowserRouter>
         <main className="mx-3">
           <Routes>

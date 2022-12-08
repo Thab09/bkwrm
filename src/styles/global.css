@@ -18,5 +18,5 @@ a {
   color: black;
 }
 .active {
-  @apply text-[#888888];
+  @apply text-[#075985];
 }

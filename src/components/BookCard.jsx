@@ -14,13 +14,10 @@ function BookCard({ bookObj }) {
   function openModal() {
     setIsOpen(true);
   }
-  console.log(bookObj);
+
+  //add read more functionality so that it does not show whole description
   return (
-    <div
-      className="h-64 w-32 my-1 cursor-pointer"
-      onClick={openModal}
-      // onClick={() => navigate("/book/" + bookID)}
-    >
+    <div className="h-64 w-32 my-1 cursor-pointer" onClick={openModal}>
       <img
         src={
           bookObj.volumeInfo.imageLinks == undefined
