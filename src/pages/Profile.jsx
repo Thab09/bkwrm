@@ -9,11 +9,8 @@ function Profile() {
   const [user, loading] = useAuthState(auth);
 
   //state for toggle switch
-  const [enabled, setEnabled] = useState(
-    localStorage.getItem("nightMode") !== null
-      ? localStorage.getItem("nightMode")
-      : "false"
-  );
+  const [darkMode, setDarkMode] = useState("");
+  const [enabled, setEnabled] = useState("");
 
   const getUserStatus = async () => {
     if (loading) return;
@@ -25,17 +22,31 @@ function Profile() {
   }, [user, loading]);
 
   useEffect(() => {
-    if (enabled) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("nightMode", "true");
+    const existingPreference = localStorage.getItem("nightMode");
+    if (existingPreference) {
+      existingPreference === "light"
+        ? (setDarkMode("light"), setEnabled(false))
+        : (setDarkMode("dark"), setEnabled(true));
     } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("nightMode", "false");
+      setDarkMode("light");
+      setEnabled(false);
+      localStorage.setItem("nightMode", "light");
     }
+  }, []);
 
-    const test = localStorage.getItem("nightMode");
-    console.log(test);
-  }, [enabled]);
+  const handleThemeChange = () => {
+    setEnabled(enabled === true ? false : true);
+    if (darkMode === "light") {
+      setDarkMode("dark");
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("nightMode", "dark");
+    } else {
+      setDarkMode("light");
+
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("nightMode", "light");
+    }
+  };
 
   return (
     <div>
@@ -44,7 +55,7 @@ function Profile() {
         <p>Dark Mode</p>
         <Switch
           checked={enabled}
-          onChange={setEnabled}
+          onChange={handleThemeChange}
           className={`${
             enabled ? "bg-blue-600" : "bg-gray-800"
           } relative inline-flex h-6 w-11  items-center rounded-full `}
