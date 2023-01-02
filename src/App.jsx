@@ -13,6 +13,7 @@ import Searched from "./pages/Searched";
 import Book from "./pages/Book";
 
 function App() {
+  // need filtering in auth
   return (
     <div className="h-screen bg-white dark:bg-gray-800">
       <BrowserRouter>
