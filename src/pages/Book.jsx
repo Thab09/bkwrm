@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+//currently useless page
+//the modal is replacing this in the searched page
 function Book() {
   const [book, setBook] = useState([]);
   let params = useParams();

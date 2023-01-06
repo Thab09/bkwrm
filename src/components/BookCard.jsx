@@ -1,21 +1,29 @@
 import { Fragment, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
+import { auth } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function BookCard({ bookObj }) {
-  const navigate = useNavigate();
-
   let [isOpen, setIsOpen] = useState(false);
+  const [isFavourited, setIsFavourited] = useState("no");
+
+  const [user, loading] = useAuthState(auth);
 
   function closeModal() {
     setIsOpen(false);
   }
 
   function openModal() {
+    console.log(user);
     setIsOpen(true);
   }
 
-  //add read more functionality so that it does not show whole description
+  //add a state to hold the status of the book (DONE)
+  //add the user to the collection and create a subcollection
+  //write a funtion in openModal to check the status of the book and set the state
+  //update to the desired button
+  //remove the state after closeModal
   return (
     <div className="h-64 w-32 my-1 cursor-pointer" onClick={openModal}>
       <img
@@ -84,18 +92,22 @@ function BookCard({ bookObj }) {
                     </div>
                   </div>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      {bookObj.volumeInfo.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
+                      Add to Favourites
+                    </button>
+                  </div>
+
+                  <div className="mt-2">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={closeModal}
+                    >
+                      Update
                     </button>
                   </div>
                 </Dialog.Panel>
