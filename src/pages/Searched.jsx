@@ -24,7 +24,7 @@ function Searched() {
   // console.log(googleBooks);
   return (
     <div className="grid grid-cols-2 place-items-center">
-      {googleBooks.map((book) => {
+      {googleBooks?.map((book) => {
         return <BookCard key={book.id} bookObj={book} />;
       })}
       <p>hi</p>

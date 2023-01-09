@@ -1,19 +1,19 @@
 import { Fragment, useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, collection } from "firebase/firestore";
 import { Dialog, Transition } from "@headlessui/react";
 import { db, auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import FavouriteButton from "./FavouriteButton";
 
 function BookCard({ bookObj }) {
-  let [isOpen, setIsOpen] = useState(false);
-  const [isFavourited, setIsFavourited] = useState("no");
+  const [isOpen, setIsOpen] = useState(false);
 
   const [user, loading] = useAuthState(auth);
 
-  async function handleFavouriteBook() {
-    const docRef = doc(db, `users/${user.uid}/favourites`, bookObj.id);
-    await setDoc(docRef, { bookid: bookObj.id });
-  }
+  // async function handleFavouriteBook() {
+  //   const docRef = doc(db, `users/${user.uid}/favourites`, bookObj.id);
+  //   await setDoc(docRef, { bookid: bookObj.id });
+  // }
 
   function closeModal() {
     setIsOpen(false);
@@ -97,7 +97,8 @@ function BookCard({ bookObj }) {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-2">
+                  <FavouriteButton bookObj={bookObj} />
+                  {/* <div className="mt-2">
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -105,9 +106,9 @@ function BookCard({ bookObj }) {
                     >
                       Add to Favourites
                     </button>
-                  </div>
+                  </div> */}
 
-                  <div className="mt-2">
+                  <div>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
