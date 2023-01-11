@@ -4,29 +4,33 @@ import { Dialog, Transition } from "@headlessui/react";
 import { db, auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import FavouriteButton from "./FavouriteButton";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function BookCard({ bookObj }) {
   const [isOpen, setIsOpen] = useState(false);
-
   const [user, loading] = useAuthState(auth);
+  const [isFavourited, setIsFavourited] = useState(false);
 
-  // async function handleFavouriteBook() {
-  //   const docRef = doc(db, `users/${user.uid}/favourites`, bookObj.id);
-  //   await setDoc(docRef, { bookid: bookObj.id });
-  // }
+  const query = collection(db, `users/${user.uid}/favourites`);
+  const [docs, load, error] = useCollectionData(query);
 
-  function closeModal() {
+  const checkIfFavourited = () => {
+    docs?.map((doc) => {
+      doc.bookid == bookObj.id ? setIsFavourited(true) : console.log("no");
+    });
+  };
+
+  const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
-  function openModal() {
-    console.log(user);
-    console.log(bookObj);
+  const openModal = async () => {
+    checkIfFavourited();
+
+    console.log(isFavourited);
     setIsOpen(true);
-  }
+  };
 
-  //add a state to hold the status of the book (DONE)
-  //add the user to the collection and create a subcollection
   //write a funtion in openModal to check the status of the book and set the state
   //update to the desired button
   //remove the state after closeModal
@@ -97,7 +101,10 @@ function BookCard({ bookObj }) {
                       </p>
                     </div>
                   </div>
-                  <FavouriteButton bookObj={bookObj} />
+                  <FavouriteButton
+                    bookObj={bookObj}
+                    isFavourited={isFavourited}
+                  />
                   {/* <div className="mt-2">
                     <button
                       type="button"
