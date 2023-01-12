@@ -1,9 +1,8 @@
 import { Fragment, useState } from "react";
-import { doc, setDoc, collection } from "firebase/firestore";
+import { doc, setDoc, collection, deleteDoc } from "firebase/firestore";
 import { Dialog, Transition } from "@headlessui/react";
 import { db, auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import FavouriteButton from "./FavouriteButton";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function BookCard({ bookObj }) {
@@ -20,40 +19,43 @@ function BookCard({ bookObj }) {
     });
   };
 
-  const closeModal = () => {
+  const closeModal = async () => {
+    if (isFavourited == true) {
+      const docRef = doc(db, `users/${user.uid}/favourites`, bookObj.id);
+      await setDoc(docRef, { bookid: bookObj.id });
+    } else {
+      await deleteDoc(doc(db, `users/${user.uid}/favourites`, bookObj.id));
+    }
     setIsOpen(false);
   };
 
   const openModal = async () => {
     checkIfFavourited();
 
-    console.log(isFavourited);
     setIsOpen(true);
   };
-
-  //write a funtion in openModal to check the status of the book and set the state
-  //update to the desired button
-  //remove the state after closeModal
   return (
-    <div className="h-64 w-32 my-1 cursor-pointer" onClick={openModal}>
-      <img
-        src={
-          bookObj.volumeInfo.imageLinks == undefined
-            ? null
-            : bookObj.volumeInfo.imageLinks.thumbnail
-        }
-        alt="cover image of the book"
-        className="h-44 w-32 rounded-sm"
-      />
-      <p className="text-xs font-bold my-1 h-8 overflow-hidden">
-        {bookObj.volumeInfo.title}
-      </p>
-      <p className="text-xs font-medium">
-        {bookObj.volumeInfo.authors == undefined
-          ? "Author Not Available"
-          : bookObj.volumeInfo.authors[0]}
-      </p>
-
+    <>
+      {loading && "Loading"}
+      <div className="h-64 w-32 my-1 cursor-pointer" onClick={openModal}>
+        <img
+          src={
+            bookObj.volumeInfo.imageLinks == undefined
+              ? null
+              : bookObj.volumeInfo.imageLinks.thumbnail
+          }
+          alt="cover image of the book"
+          className="h-44 w-32 rounded-sm"
+        />
+        <p className="text-xs font-bold my-1 h-8 overflow-hidden">
+          {bookObj.volumeInfo.title}
+        </p>
+        <p className="text-xs font-medium">
+          {bookObj.volumeInfo.authors == undefined
+            ? "Author Not Available"
+            : bookObj.volumeInfo.authors[0]}
+        </p>
+      </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -101,19 +103,25 @@ function BookCard({ bookObj }) {
                       </p>
                     </div>
                   </div>
-                  <FavouriteButton
-                    bookObj={bookObj}
-                    isFavourited={isFavourited}
-                  />
-                  {/* <div className="mt-2">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={handleFavouriteBook}
-                    >
-                      Add to Favourites
-                    </button>
-                  </div> */}
+                  <div className="my-2">
+                    {isFavourited ? (
+                      <button
+                        type="button"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-slate-100 hover:bg-yellow-700 "
+                        onClick={() => setIsFavourited(!isFavourited)}
+                      >
+                        Favourited
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-slate-100 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-slate-200 "
+                        onClick={() => setIsFavourited(!isFavourited)}
+                      >
+                        Add to Favourites
+                      </button>
+                    )}
+                  </div>
 
                   <div>
                     <button
@@ -130,7 +138,7 @@ function BookCard({ bookObj }) {
           </div>
         </Dialog>
       </Transition>
-    </div>
+    </>
   );
 }
 
