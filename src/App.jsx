@@ -1,16 +1,12 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Nav from "./components/Nav";
 import Login from "./pages/auth/Login";
-import Reading from "./pages/Reading";
-import Planned from "./pages/Planned";
 import Favourites from "./pages/Favourites";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Searched from "./pages/Searched";
-import Book from "./pages/Book";
 
 function App() {
   // need filtering in auth
@@ -20,12 +16,9 @@ function App() {
         <main className="mx-3">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/reading" element={<Reading />} />
-            <Route path="/planned" element={<Planned />} /> */}
             <Route path="/favourites" element={<Favourites />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/searched/:search" element={<Searched />} />
-            <Route path="/book/:name" element={<Book />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>

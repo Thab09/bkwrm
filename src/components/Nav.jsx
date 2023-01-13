@@ -34,14 +34,6 @@ function Nav() {
               <AiFillHome className="" size={24} />
               <h4 className="hidden md:block">Home</h4>
             </NavLink>
-            {/* <NavLink to="/reading">
-              <FaBookOpen size={24} />
-              <h4 className="hidden md:block">Reading</h4>
-            </NavLink>
-            <NavLink to="/planned">
-              <MdCollectionsBookmark size={24} />
-              <h4 className="hidden md:block">Planned</h4>
-            </NavLink> */}
             <NavLink to="/favourites">
               <ImBooks size={24} />
               <h4 className="hidden md:block">Favourites</h4>

@@ -1,48 +1,15 @@
 import { Fragment, useState } from "react";
-import { doc, setDoc, collection, deleteDoc } from "firebase/firestore";
 import { Dialog, Transition } from "@headlessui/react";
-import { db, auth } from "../utils/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import FavouritedButton from "./FavouritedButton";
-import AddToFavouritesButton from "./AddToFavouritesButton";
+import LoginToSaveBookButton from "./LoginToSaveBookButton";
 
-function BookCard({ bookObj }) {
+function BookCardGuest({ bookObj }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, loading] = useAuthState(auth);
-  const [isFavourited, setIsFavourited] = useState(false);
-
-  const query = collection(db, `users/${user.uid}/favourites`);
-  const [docs, load, error] = useCollectionData(query);
-
-  const checkIfFavourited = () => {
-    docs?.map((doc) => {
-      doc.bookid == bookObj.id ? setIsFavourited(true) : console.log("no");
-    });
-  };
-
-  const handleFavButton = () => {
-    if (user) {
-      setIsFavourited(!isFavourited);
-    } else {
-    }
-  };
 
   const openModal = async () => {
-    if (user) checkIfFavourited();
     setIsOpen(true);
   };
 
   const closeModal = async () => {
-    if (user) {
-      if (isFavourited == true) {
-        const docRef = doc(db, `users/${user.uid}/favourites`, bookObj.id);
-        await setDoc(docRef, { bookid: bookObj.id });
-      } else {
-        await deleteDoc(doc(db, `users/${user.uid}/favourites`, bookObj.id));
-      }
-    }
-
     setIsOpen(false);
   };
 
@@ -115,15 +82,7 @@ function BookCard({ bookObj }) {
                     </div>
                   </div>
                   <div className="my-2">
-                    {isFavourited ? (
-                      <FavouritedButton
-                        handleFavButton={handleFavButton}
-                      ></FavouritedButton>
-                    ) : (
-                      <AddToFavouritesButton
-                        handleFavButton={handleFavButton}
-                      ></AddToFavouritesButton>
-                    )}
+                    <LoginToSaveBookButton></LoginToSaveBookButton>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -135,4 +94,4 @@ function BookCard({ bookObj }) {
   );
 }
 
-export default BookCard;
+export default BookCardGuest;
