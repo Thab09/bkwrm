@@ -20,7 +20,7 @@ function BookCard({ bookObj }) {
       doc.bookid == bookObj.id ? setIsFavourited(true) : console.log("no");
     });
   };
-
+  //no need for if else since BookCardGuest has been created
   const handleFavButton = () => {
     if (user) {
       setIsFavourited(!isFavourited);

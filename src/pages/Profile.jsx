@@ -1,25 +1,11 @@
 import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { Switch } from "@headlessui/react";
 
 function Profile() {
-  const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
-
   //state for toggle switch
   const [darkMode, setDarkMode] = useState("");
   const [enabled, setEnabled] = useState("");
-
-  const getUserStatus = async () => {
-    if (loading) return;
-    if (!user) return navigate("/auth/login");
-  };
-
-  useEffect(() => {
-    getUserStatus();
-  }, [user, loading]);
 
   useEffect(() => {
     const existingPreference = localStorage.getItem("nightMode");
