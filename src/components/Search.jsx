@@ -18,7 +18,7 @@ function Search() {
         "Used to create out of nowhere"
       );
       await setDoc(docRef, {
-        createdFor: "To set up the subcollection for each user",
+        bookid: "To set up the subcollection for each user",
       });
 
       navigate("/searched/" + input);
