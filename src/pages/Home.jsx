@@ -1,11 +1,5 @@
-import Search from "../components/Search";
-
 function Home() {
-  return (
-    <div className="">
-      <Search />
-    </div>
-  );
+  return <div className=""></div>;
 }
 
 export default Home;

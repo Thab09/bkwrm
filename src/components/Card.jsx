@@ -1,54 +1,23 @@
 import { Fragment, useState } from "react";
-import { doc, setDoc, collection, deleteDoc } from "firebase/firestore";
 import { Dialog, Transition } from "@headlessui/react";
-import { db, auth } from "../utils/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import FavouritedButton from "./FavouritedButton";
-import AddToFavouritesButton from "./AddToFavouritesButton";
 
-function BookCard({ bookObj }) {
+function Card({ bookObj }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, loading] = useAuthState(auth);
-  const [isFavourited, setIsFavourited] = useState(false);
-
-  const query = collection(db, `users/${user.uid}/favourites`);
-  const [docs, load, error] = useCollectionData(query);
-
-  const checkIfFavourited = () => {
-    docs?.map((doc) => {
-      doc.bookid == bookObj.id ? setIsFavourited(true) : console.log("no");
-    });
-  };
-  //no need for if else since BookCardGuest has been created
-  const handleFavButton = () => {
-    if (user) {
-      setIsFavourited(!isFavourited);
-    } else {
-    }
-  };
 
   const openModal = async () => {
-    if (user) checkIfFavourited();
     setIsOpen(true);
   };
 
   const closeModal = async () => {
-    if (user) {
-      if (isFavourited == true) {
-        const docRef = doc(db, `users/${user.uid}/favourites`, bookObj.id);
-        await setDoc(docRef, { bookid: bookObj.id });
-      } else {
-        await deleteDoc(doc(db, `users/${user.uid}/favourites`, bookObj.id));
-      }
-    }
-
     setIsOpen(false);
   };
 
   return (
     <>
-      <div className="h-64 w-32 my-1 cursor-pointer" onClick={openModal}>
+      <div
+        className="w-32 h-60 cursor-pointer rounded-sm overflow-hidden mb-5 hover:scale-105 duration-300 font-medium hover:font-bold"
+        onClick={openModal}
+      >
         <img
           src={
             bookObj.volumeInfo.imageLinks == undefined
@@ -56,16 +25,14 @@ function BookCard({ bookObj }) {
               : bookObj.volumeInfo.imageLinks.thumbnail
           }
           alt="cover image of the book"
-          className="h-44 w-32 rounded-sm"
+          className="w-32 h-44 rounded-sm "
         />
-        <p className="text-xs font-bold my-1 h-8 overflow-hidden">
-          {bookObj.volumeInfo.title}
-        </p>
-        <p className="text-xs font-medium">
+        <p className="text-xs mt-2">{bookObj.volumeInfo.title}</p>
+        {/* <p className="text-xs font-medium">
           {bookObj.volumeInfo.authors == undefined
             ? "Author Not Available"
             : bookObj.volumeInfo.authors[0]}
-        </p>
+        </p> */}
       </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -114,17 +81,6 @@ function BookCard({ bookObj }) {
                       </p>
                     </div>
                   </div>
-                  <div className="my-2">
-                    {isFavourited ? (
-                      <FavouritedButton
-                        handleFavButton={handleFavButton}
-                      ></FavouritedButton>
-                    ) : (
-                      <AddToFavouritesButton
-                        handleFavButton={handleFavButton}
-                      ></AddToFavouritesButton>
-                    )}
-                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -135,4 +91,4 @@ function BookCard({ bookObj }) {
   );
 }
 
-export default BookCard;
+export default Card;
