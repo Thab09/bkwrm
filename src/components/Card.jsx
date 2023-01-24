@@ -12,30 +12,35 @@ function Card({ bookObj }) {
     setIsOpen(false);
   };
 
+  //PLACEHOLDER FOR NON EXISTENT IMAGESS
+  //IF HAVE TIME DO VERTICAL FOR EACH BOOK? ALL SIZES
+
   return (
     <>
-      <div
-        className="w-32 h-60 cursor-pointer rounded-sm overflow-hidden mb-5 hover:scale-105 duration-300 font-medium hover:font-bold"
-        onClick={openModal}
-      >
-        <img
-          src={
-            bookObj.volumeInfo.imageLinks == undefined
-              ? null
-              : bookObj.volumeInfo.imageLinks.thumbnail
-          }
-          alt="cover image of the book"
-          className="w-32 h-44 rounded-sm "
-        />
-        <p className="text-xs mt-2">{bookObj.volumeInfo.title}</p>
-        {/* <p className="text-xs font-medium">
-          {bookObj.volumeInfo.authors == undefined
-            ? "Author Not Available"
-            : bookObj.volumeInfo.authors[0]}
-        </p> */}
+      <div className="w-32 h-60 cursor-pointer rounded-sm overflow-hidden mb-3 hover:scale-105 duration-300">
+        <div
+          className="font-medium hover:font-bold drop-shadow-sm hover:brightness-110 outline outline-2 outline-slate-100 hover:outline-orange-600 pb-1"
+          onClick={openModal}
+        >
+          <img
+            src={
+              bookObj.volumeInfo.imageLinks == undefined
+                ? null
+                : bookObj.volumeInfo.imageLinks.thumbnail
+            }
+            alt="cover image of the book"
+            className="w-32 h-44 rounded-sm "
+          />
+          <p className="text-xs mt-2">{bookObj.volumeInfo.title}</p>
+        </div>
       </div>
+
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog
+          as="div"
+          className="relative z-10 font-poppins"
+          onClose={closeModal}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -59,8 +64,8 @@ function Card({ bookObj }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-md bg-white p-5 text-left align-middle shadow-xl transition-all">
-                  <div className="flex gap-4">
+                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-sm bg-white p-4 text-left align-middle shadow-xl transition-all">
+                  <div className="flex gap-6">
                     <img
                       src={
                         bookObj.volumeInfo.imageLinks == undefined
@@ -71,14 +76,29 @@ function Card({ bookObj }) {
                       className="h-44 w-32 rounded-sm"
                     />
                     <div>
-                      <h2 className="text-xl font-bold leading-6 text-gray-900">
+                      <h2 className="text-xl font-semibold leading-6 mb-1 text-gray-900">
                         {bookObj.volumeInfo.title}
                       </h2>
-                      <p className="text-xs font-medium">
+                      <p className="text-xs mb-2">
                         {bookObj.volumeInfo.authors == undefined
                           ? "Author Not Available"
                           : bookObj.volumeInfo.authors[0]}
                       </p>
+                      <button
+                        type="button"
+                        className="inline-flex justify-center rounded-sm bg-orange-600 px-2 py-1.5 text-sm font-medium text-slate-100 hover:bg-orange-500 "
+                        onClick={
+                          bookObj.volumeInfo.previewLink
+                            ? () =>
+                                window.open(
+                                  bookObj.volumeInfo.previewLink,
+                                  "_blank"
+                                )
+                            : () => void 0
+                        }
+                      >
+                        Book Preview
+                      </button>
                     </div>
                   </div>
                 </Dialog.Panel>

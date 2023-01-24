@@ -10,6 +10,7 @@ function Search() {
     e.preventDefault();
     if (input === "") return;
     navigate("/searched/" + input);
+    setInput("");
   };
 
   return (
@@ -19,15 +20,18 @@ function Search() {
           onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
-          className="border-solid border-2 border-neutral-700 px-2 w-full h-7 rounded-sm"
+          className="px-2 w-full h-8 rounded-sm border-solid border-2 border-orange-400 text-neutral-700 dark:border-purple-main focus:outline-none"
         />
-        <BsArrowRightShort
-          size={28}
-          className="bg-neutral-900 rounded-sm"
-          color="white"
-        />
+        <button type="submit">
+          <BsArrowRightShort
+            size={32}
+            className="rounded-sm bg-orange-600 dark:bg-purple-main"
+            color="white"
+          />
+        </button>
+
         <button
-          className="hidden font-medium border-solid border border-slate-900 px-2 py-px w-24 h-7 italic "
+          className="hidden font-medium border-solid border border-slate-900 px-2 py-px w-24 h-8 italic "
           type="submit"
         >
           search

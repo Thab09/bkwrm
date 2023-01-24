@@ -9,7 +9,7 @@ function Searched() {
 
   const getSearchedBooks = async (bookname) => {
     const data = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${bookname}&maxResults=4&key=${
+      `https://www.googleapis.com/books/v1/volumes?q=${bookname}&maxResults=40&key=${
         import.meta.env.VITE_GOOGLE_API_KEY
       }`
     );
