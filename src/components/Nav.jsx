@@ -33,14 +33,14 @@ function Nav() {
   return (
     <nav className="py-3 mb-3 mx-8  ">
       <ul>
-        <div className="font-lora flex text-3xl font-bold items-center justify-between gap-5">
+        <div className="flex text-2xl font-bold items-center justify-between gap-5">
           <Link to={"/"}>
-            <h4 className="text-neutral-700 dark:text-white">bkwrm</h4>
+            <h4 className="text-purple-main">bkwrm</h4>
           </Link>
           {darkMode === "light" ? (
             <BiSun
               onClick={handleThemeChange}
-              className="cursor-pointer text-neutral-700"
+              className="cursor-pointer text-neutral-00"
             />
           ) : (
             <BiMoon

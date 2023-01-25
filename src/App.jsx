@@ -9,10 +9,11 @@ import Search from "./components/Search";
 function App() {
   //DARK MODE
   //RESPONSIVENES
+  //LOADIN WHEN THE RESULT FOR SEARCH IS GOING, REFRESH IF TOO LATE, CANT GET IF ERROR
   //STICKY NAV AND FOOTER IF POSSIBLE
   //FOOTER
   return (
-    <div className="h-screen font-poppins bg-white sm:bg-gray-500 dark:bg-grey-custom">
+    <div className="h-screen font-nunito bg-off-white sm:bg-gray-500 dark:bg-grey-dark">
       <BrowserRouter>
         <Nav />
         <Search />

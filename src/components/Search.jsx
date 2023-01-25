@@ -20,12 +20,12 @@ function Search() {
           onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
-          className="px-2 w-full h-8 rounded-sm border-solid border-2 border-orange-400 text-neutral-700 dark:border-purple-main focus:outline-none"
+          className="px-2 w-full h-8 font-medium rounded-sm border-solid border-2 border-neutral-500 text-neutral-700 dark:border-white focus:outline-none"
         />
         <button type="submit">
           <BsArrowRightShort
             size={32}
-            className="rounded-sm bg-orange-600 dark:bg-purple-main"
+            className="rounded-sm  bg-purple-main"
             color="white"
           />
         </button>

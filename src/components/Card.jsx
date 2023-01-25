@@ -9,6 +9,7 @@ function Card({ bookObj }) {
   };
 
   const closeModal = async () => {
+    console.log(bookObj);
     setIsOpen(false);
   };
 
@@ -17,9 +18,9 @@ function Card({ bookObj }) {
 
   return (
     <>
-      <div className="w-32 h-60 cursor-pointer rounded-sm overflow-hidden mb-3 hover:scale-105 duration-300">
+      {/* <div className="w-32 h-60 cursor-pointer rounded-sm overflow-hidden mb-3 hover:scale-105 duration-300">
         <div
-          className="font-medium hover:font-bold drop-shadow-sm hover:brightness-110 outline outline-2 outline-slate-100 hover:outline-orange-600 pb-1"
+          className="font-medium hover:font-bold hover:brightness-110 outline outline-2 outline-gray-100 hover:outline-gray-300 pb-1"
           onClick={openModal}
         >
           <img
@@ -32,6 +33,30 @@ function Card({ bookObj }) {
             className="w-32 h-44 rounded-sm "
           />
           <p className="text-xs mt-2">{bookObj.volumeInfo.title}</p>
+        </div>
+      </div> */}
+      <div
+        className="w-full h-36  flex gap-4 py-2 border-b border-slate-500 cursor-pointer hover:brightness-110 hover:scale-105 duration-300 "
+        onClick={openModal}
+      >
+        <img
+          src={
+            bookObj.volumeInfo.imageLinks == undefined
+              ? null
+              : bookObj.volumeInfo.imageLinks.thumbnail
+          }
+          alt="cover image of the book"
+          className="rounded-sm h-32 w-[5.5rem]"
+        />
+        <div>
+          <p className="text-md mb-1 font-bold">{bookObj.volumeInfo.title}</p>
+          <p className="text-xs h-20 overflow-hidden">
+            {bookObj.volumeInfo.description
+              ? bookObj.volumeInfo.description
+              : bookObj.volumeInfo.subtitle
+              ? bookObj.volumeInfo.subtitle
+              : "Not Available"}
+          </p>
         </div>
       </div>
 
@@ -84,9 +109,10 @@ function Card({ bookObj }) {
                           ? "Author Not Available"
                           : bookObj.volumeInfo.authors[0]}
                       </p>
+                      //only show button if available
                       <button
                         type="button"
-                        className="inline-flex justify-center rounded-sm bg-orange-600 px-2 py-1.5 text-sm font-medium text-slate-100 hover:bg-orange-500 "
+                        className="inline-flex justify-center rounded-sm bg-orange-600 px-2 py-1.5 text-sm font-medium text-white hover:bg-orange-500 "
                         onClick={
                           bookObj.volumeInfo.previewLink
                             ? () =>

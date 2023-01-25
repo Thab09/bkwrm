@@ -6,9 +6,11 @@ module.exports = {
   theme: {
     colors: {
       current: "currentColor",
-      "grey-custom": "#181818",
+      "grey-dark": "#181818",
       "purple-main": "#7000FF",
+      "off-white": "#FBFBFB",
       black: colors.black,
+      violet: colors.violet,
       white: colors.white,
       gray: colors.gray,
       emerald: colors.emerald,
@@ -19,7 +21,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        lora: "Lora",
+        nunito: "Nunito",
         poppins: "Poppins",
       },
     },

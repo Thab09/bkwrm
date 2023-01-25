@@ -9,7 +9,7 @@ function Searched() {
 
   const getSearchedBooks = async (bookname) => {
     const data = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${bookname}&maxResults=40&key=${
+      `https://www.googleapis.com/books/v1/volumes?q=${bookname}&maxResults=4&key=${
         import.meta.env.VITE_GOOGLE_API_KEY
       }`
     );
@@ -22,7 +22,7 @@ function Searched() {
   }, [params.search]);
 
   return (
-    <div className="grid grid-cols-2 place-items-center gap-x-10">
+    <div className="">
       {googleBooks?.map((book) => {
         return <Card key={book.id} bookObj={book} />;
       })}
