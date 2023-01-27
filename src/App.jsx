@@ -13,11 +13,11 @@ function App() {
   //STICKY NAV AND FOOTER IF POSSIBLE
   //FOOTER
   return (
-    <div className="h-screen font-nunito bg-off-white sm:bg-gray-500 dark:bg-grey-dark">
+    <div className="h-screen font-nunito bg-white dark:bg-grey-dark">
       <BrowserRouter>
         <Nav />
         <Search />
-        <main className="mt-8 mx-8">
+        <main className="mt-8 mx-6">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/searched/:search" element={<Searched />} />

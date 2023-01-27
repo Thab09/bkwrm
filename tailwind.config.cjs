@@ -5,6 +5,7 @@ module.exports = {
   darkMode: "class",
   theme: {
     colors: {
+      transparent: "transparent",
       current: "currentColor",
       "grey-dark": "#181818",
       "purple-main": "#7000FF",
@@ -16,7 +17,7 @@ module.exports = {
       emerald: colors.emerald,
       indigo: colors.indigo,
       yellow: colors.yellow,
-      orange: colors.orange,
+      slate: colors.slate,
       neutral: colors.neutral,
     },
     extend: {

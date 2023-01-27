@@ -9,7 +9,6 @@ function Card({ bookObj }) {
   };
 
   const closeModal = async () => {
-    console.log(bookObj);
     setIsOpen(false);
   };
 
@@ -36,7 +35,7 @@ function Card({ bookObj }) {
         </div>
       </div> */}
       <div
-        className="w-full h-36  flex gap-4 py-2 border-b border-slate-500 cursor-pointer hover:brightness-110 hover:scale-105 duration-300 "
+        className="w-full h-36 flex gap-4 mb-1 p-2 rounded-sm overflow-hidden cursor-pointer border-2 border-transparent hover:brightness-105 hover:border-1 hover:border-purple-main bg-neutral-100 dark:bg-neutral-800 duration-300"
         onClick={openModal}
       >
         <img
@@ -46,11 +45,18 @@ function Card({ bookObj }) {
               : bookObj.volumeInfo.imageLinks.thumbnail
           }
           alt="cover image of the book"
-          className="rounded-sm h-32 w-[5.5rem]"
+          className="rounded-sm shrink-0 h-[7.5] w-[5.5rem]  "
         />
         <div>
-          <p className="text-md mb-1 font-bold">{bookObj.volumeInfo.title}</p>
-          <p className="text-xs h-20 overflow-hidden">
+          <p className="text-md font-bold leading-5 mb-1 text-slate-900 dark:text-slate-50">
+            {bookObj.volumeInfo.title}
+          </p>
+          <p className="text-xs mb-1 font-semibold dark:text-slate-100">
+            {bookObj.volumeInfo.authors
+              ? bookObj.volumeInfo.authors[0]
+              : "Unknown"}
+          </p>
+          <p className="text-xs h-12 text-neutral-800 dark:text-slate-300 overflow-hidden">
             {bookObj.volumeInfo.description
               ? bookObj.volumeInfo.description
               : bookObj.volumeInfo.subtitle

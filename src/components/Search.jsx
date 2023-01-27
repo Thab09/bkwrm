@@ -20,7 +20,7 @@ function Search() {
           onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
-          className="px-2 w-full h-8 font-medium rounded-sm border-solid border-2 border-neutral-500 text-neutral-700 dark:border-white focus:outline-none"
+          className="px-2 w-full h-8 font-medium rounded-sm border-solid border border-neutral-300 text-neutral-700 dark:border-white focus:outline-none focus:border-2 focus:border-purple-main"
         />
         <button type="submit">
           <BsArrowRightShort
