@@ -22,7 +22,7 @@ function Searched() {
   }, [params.search]);
 
   return (
-    <div className="">
+    <div className="grid md:grid-cols-2 gap-2 md:gap-3">
       {googleBooks?.map((book) => {
         return <Card key={book.id} bookObj={book} />;
       })}

@@ -13,18 +13,20 @@ function App() {
   //STICKY NAV AND FOOTER IF POSSIBLE
   //FOOTER
   return (
-    <div className="h-screen font-nunito bg-white dark:bg-grey-dark">
-      <BrowserRouter>
-        <Nav />
-        <Search />
-        <main className="mt-8 mx-6">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/searched/:search" element={<Searched />} />
-            <Route path="/*" element={<ErrorPage />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
+    <div className=" h-screen font-nunito bg-neutral-100 dark:bg-black">
+      <div className="max-w-6xl mx-auto h-screen bg-white dark:bg-grey-dark">
+        <BrowserRouter>
+          <Nav />
+          <Search />
+          <main className="mt-8 mx-6 ">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/searched/:search" element={<Searched />} />
+              <Route path="/*" element={<ErrorPage />} />
+            </Routes>
+          </main>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

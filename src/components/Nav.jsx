@@ -31,11 +31,11 @@ function Nav() {
   };
 
   return (
-    <nav className="py-3 mb-3 mx-8">
+    <nav className="py-3 mb-3 mx-6">
       <ul>
         <div className="flex text-2xl font-bold items-center justify-between gap-5">
           <Link to={"/"}>
-            <h4 className="text-purple-main dark:brightness-125">bkwrm</h4>
+            <h4 className="text-purple-main">bkwrm</h4>
           </Link>
           {darkMode === "light" ? (
             <BiMoon

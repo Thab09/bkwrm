@@ -14,27 +14,27 @@ function Search() {
   };
 
   return (
-    <form onSubmit={submitHandler} className="mx-8">
+    <form onSubmit={submitHandler} className="mx-6">
       <div className="flex gap-2 items-center">
         <input
           onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
-          className="px-2 w-full h-8 font-medium rounded-sm border-solid border border-neutral-300 text-neutral-700 dark:border-white focus:outline-none focus:border-2 focus:border-purple-main"
+          className="px-2 w-full h-8 font-medium rounded-sm border-solid border border-neutral-300 text-neutral-700 dark:border-white focus:outline-none focus:border-2 focus:border-slate-600"
         />
         <button type="submit">
           <BsArrowRightShort
             size={32}
-            className="rounded-sm  bg-purple-main"
+            className="rounded-sm  bg-purple-main md:hidden"
             color="white"
           />
         </button>
 
         <button
-          className="hidden font-medium border-solid border border-slate-900 px-2 py-px w-24 h-8 italic "
+          className="hidden md:block py-px w-24 h-8 font-semibold rounded-sm border-2 border-purple-main dark:bg-purple-main dark:text-white dark:hover:brightness-125 hover:bg-purple-main hover:text-white"
           type="submit"
         >
-          search
+          Search
         </button>
       </div>
     </form>

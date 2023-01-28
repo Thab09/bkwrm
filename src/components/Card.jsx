@@ -35,7 +35,7 @@ function Card({ bookObj }) {
         </div>
       </div> */}
       <div
-        className="w-full h-36 flex gap-4 mb-1 p-2 rounded-sm overflow-hidden cursor-pointer border-2 border-transparent hover:brightness-105 hover:border-1 hover:border-purple-main bg-neutral-100 dark:bg-neutral-800 duration-300"
+        className="w-full h-36 flex gap-4 p-2 rounded-sm overflow-hidden cursor-pointer  duration-300 border-2 border-transparent hover:brightness-105 hover:border-1 hover:border-purple-main bg-neutral-100 dark:bg-neutral-800"
         onClick={openModal}
       >
         <img
@@ -56,7 +56,7 @@ function Card({ bookObj }) {
               ? bookObj.volumeInfo.authors[0]
               : "Unknown"}
           </p>
-          <p className="text-xs h-12 text-neutral-800 dark:text-slate-300 overflow-hidden">
+          <p className="text-xs h-12 text-neutral-800 dark:text-slate-300 overflow-hidden sm:h-20">
             {bookObj.volumeInfo.description
               ? bookObj.volumeInfo.description
               : bookObj.volumeInfo.subtitle
@@ -118,7 +118,7 @@ function Card({ bookObj }) {
                       //only show button if available
                       <button
                         type="button"
-                        className="inline-flex justify-center rounded-sm bg-orange-600 px-2 py-1.5 text-sm font-medium text-white hover:bg-orange-500 "
+                        className="inline-flex justify-center rounded-sm bg-purple-main px-2 py-1.5 text-sm font-medium text-white hover:bg-purple-main"
                         onClick={
                           bookObj.volumeInfo.previewLink
                             ? () =>
