@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import Book from "../assets/Book.svg";
 
 function Card({ bookObj }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,36 +13,16 @@ function Card({ bookObj }) {
     setIsOpen(false);
   };
 
-  //PLACEHOLDER FOR NON EXISTENT IMAGESS
-  //IF HAVE TIME DO VERTICAL FOR EACH BOOK? ALL SIZES
-
   return (
     <>
-      {/* <div className="w-32 h-60 cursor-pointer rounded-sm overflow-hidden mb-3 hover:scale-105 duration-300">
-        <div
-          className="font-medium hover:font-bold hover:brightness-110 outline outline-2 outline-gray-100 hover:outline-gray-300 pb-1"
-          onClick={openModal}
-        >
-          <img
-            src={
-              bookObj.volumeInfo.imageLinks == undefined
-                ? null
-                : bookObj.volumeInfo.imageLinks.thumbnail
-            }
-            alt="cover image of the book"
-            className="w-32 h-44 rounded-sm "
-          />
-          <p className="text-xs mt-2">{bookObj.volumeInfo.title}</p>
-        </div>
-      </div> */}
       <div
-        className="w-full h-36 flex gap-4 p-2 rounded-sm overflow-hidden cursor-pointer  duration-300 border-2 border-transparent hover:brightness-105 hover:border-1 hover:border-purple-main bg-neutral-100 dark:bg-neutral-800"
+        className="w-full h-36 flex gap-4 p-2 rounded-sm overflow-hidden cursor-pointer duration-200 border-2 border-transparent hover:brightness-105 hover:border-1 hover:border-purple-main bg-neutral-100 dark:bg-neutral-800"
         onClick={openModal}
       >
         <img
           src={
             bookObj.volumeInfo.imageLinks == undefined
-              ? null
+              ? Book
               : bookObj.volumeInfo.imageLinks.thumbnail
           }
           alt="cover image of the book"
@@ -95,19 +76,19 @@ function Card({ bookObj }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-sm bg-white p-4 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="m-4 w-full max-w-2xl max-h-96 md:p-6 md:max-h-[32rem] scrollbar overflow-y-auto transform overflow-hidden rounded-sm bg-white dark:bg-neutral-800 dark:text-white p-4 text-left align-middle shadow-xl transition-all">
                   <div className="flex gap-6">
                     <img
                       src={
                         bookObj.volumeInfo.imageLinks == undefined
-                          ? null
+                          ? Book
                           : bookObj.volumeInfo.imageLinks.thumbnail
                       }
                       alt="cover image of the book"
                       className="h-44 w-32 rounded-sm"
                     />
                     <div>
-                      <h2 className="text-xl font-semibold leading-6 mb-1 text-gray-900">
+                      <h2 className="text-xl font-semibold leading-6 mb-1 text-gray-900 dark:text-white">
                         {bookObj.volumeInfo.title}
                       </h2>
                       <p className="text-xs mb-2">
@@ -115,24 +96,29 @@ function Card({ bookObj }) {
                           ? "Author Not Available"
                           : bookObj.volumeInfo.authors[0]}
                       </p>
-                      //only show button if available
-                      <button
-                        type="button"
-                        className="inline-flex justify-center rounded-sm bg-purple-main px-2 py-1.5 text-sm font-medium text-white hover:bg-purple-main"
-                        onClick={
-                          bookObj.volumeInfo.previewLink
-                            ? () =>
-                                window.open(
-                                  bookObj.volumeInfo.previewLink,
-                                  "_blank"
-                                )
-                            : () => void 0
-                        }
-                      >
-                        Book Preview
-                      </button>
+                      {bookObj.volumeInfo.previewLink && (
+                        <button
+                          type="button"
+                          className="inline-flex justify-center rounded-sm bg-purple-main px-2 py-1.5 text-sm text-white hover:bg-purple-main"
+                          onClick={() =>
+                            window.open(
+                              bookObj.volumeInfo.previewLink,
+                              "_blank"
+                            )
+                          }
+                        >
+                          Book Preview
+                        </button>
+                      )}
                     </div>
                   </div>
+                  <p className="text-sm font-normal mt-3">
+                    {bookObj.volumeInfo.description
+                      ? bookObj.volumeInfo.description
+                      : bookObj.volumeInfo.subtitle
+                      ? bookObj.volumeInfo.subtitle
+                      : "Not Available"}
+                  </p>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

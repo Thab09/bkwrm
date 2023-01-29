@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,4 +16,36 @@ body {
 a {
   text-decoration: none;
   color: black;
+}
+
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #7000ff #181818;
+}
+
+/* For Chrome, EDGE, Opera, Others */
+.scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  background: #7000ff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  background: #7000ff;
 }
