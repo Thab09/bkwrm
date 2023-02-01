@@ -31,7 +31,7 @@ function Nav() {
   };
 
   return (
-    <nav className="py-3 mb-3 mx-6 sticky inset-x-0 top-0 bg-white dark:bg-grey-dark">
+    <nav className="py-3 mb-3 mx-8 sticky inset-x-0 top-0 bg-white dark:bg-grey-dark">
       <ul>
         <div className="flex text-2xl font-bold items-center justify-between gap-5">
           <Link to={"/"}>

@@ -9,16 +9,16 @@ import Footer from "./components/Footer";
 
 function App() {
   //REFRESH IF TOO LATE, CANT GET IF ERROR
-  //HOME -> RECENT SEARCHES
-  //SHARE PAGE?
+  //SHARE PAGE? !IMPORTANT
   //DIFFERENT SEARCHES
+
   return (
     <div className="min-h-screen font-nunito bg-neutral-100 dark:bg-black">
       <div className="max-w-5xl mx-auto min-h-screen bg-white dark:bg-grey-dark">
         <BrowserRouter>
           <Nav />
           <Search />
-          <main className="mt-8 mx-6 scrollbar">
+          <main className="mt-6 mx-8 scrollbar">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/searched/:search" element={<Searched />} />

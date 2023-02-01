@@ -16,7 +16,7 @@ function Footer() {
         onClick={() => window.open("https://github.com/Thab09", "_blank")}
       >
         <BsGithub />
-        <p>Ibraheem</p>
+        <p>thab09</p>
       </div>
     </div>
   );

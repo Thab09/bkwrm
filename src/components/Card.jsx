@@ -85,7 +85,7 @@ function Card({ bookObj }) {
                           : bookObj.volumeInfo.imageLinks.thumbnail
                       }
                       alt="cover image of the book"
-                      className="h-44 w-32 rounded-sm"
+                      className="h-44 w-32 rounded-sm border-2 dark:border-none"
                     />
                     <div>
                       <h2 className="text-xl font-semibold leading-6 mb-1 text-gray-900 dark:text-white">
@@ -112,7 +112,7 @@ function Card({ bookObj }) {
                       )}
                     </div>
                   </div>
-                  <p className="text-sm font-normal mt-3">
+                  <p className="text-xs font-normal mt-3">
                     {bookObj.volumeInfo.description
                       ? bookObj.volumeInfo.description
                       : bookObj.volumeInfo.subtitle

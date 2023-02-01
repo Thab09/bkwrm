@@ -9,12 +9,21 @@ function Search() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (input === "") return;
+
+    const recentSearches = localStorage.getItem("recentSearches");
+    if (recentSearches) {
+      const prevSearches = localStorage.getItem("recentSearches");
+      localStorage.setItem("recentSearches", prevSearches + "," + input);
+    } else {
+      localStorage.setItem("recentSearches", input);
+    }
+
     navigate("/searched/" + input);
-    // setInput("");
+    setInput("");
   };
 
   return (
-    <form onSubmit={submitHandler} className="mx-6">
+    <form onSubmit={submitHandler} className="mx-8">
       <div className="flex gap-2 items-center">
         <input
           onChange={(e) => setInput(e.target.value)}
